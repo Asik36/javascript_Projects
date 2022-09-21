@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<body id ="background_color">
+    <h1>neat</h1>
+    <p>cool</p>
+    color:
+    <input type="number" id="myR" min="0" oninput="validity.valid||(value='');getInput()" max="255"> 
+    <input type="number" id="myG" min="0" oninput="validity.valid||(value='');getInput()" max="255">
+    <input type="number" id="myB" min="0" oninput="validity.valid||(value='');getInput()" max="255">
+    
+    <script src="index.js"></script>
+    <br><br>
+    <button onclick = "whatever(getRandomColor())">crazy button</button>
+    <br>
+    <p>insane party switch</p>
+    <label class="switch">
+        <input id = "switchCheck" type="checkbox">
+        <span class="slider round"></span>
+      </label>
+</body>
+</html>
