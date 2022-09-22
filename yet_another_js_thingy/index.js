@@ -1,13 +1,26 @@
+/**
+ * set the color
+ * @param {string} color  the new color
+ */
 function whatever(color) {
-    console.log(color);
+    const { r, g, b } = hexToRGB(color);
+    document.getElementById("myR").value = r;
+    document.getElementById("myG").value = g;
+    document.getElementById("myB").value = b;
+
     document.getElementById("background_color").style.background = color;
     
-}
 
+
+}
+/**
+ * get random hex value
+ * @param {string} color  the new color
+ */
 function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
         color += letters[Math.floor(Math.random() * letters.length)];
     }
     return color;
@@ -16,7 +29,6 @@ function getInput(){
     let r = document.getElementById("myR").value;
     let g = document.getElementById("myG").value;
     let b = document.getElementById("myB").value;
-    console.log(rgbToHex(r, g, b));
     document.getElementById("background_color").style.background = rgbToHex(r, g, b);
 }
 function rgbToHex(red, green, blue) {
@@ -24,11 +36,23 @@ function rgbToHex(red, green, blue) {
     return '#' + (0x1000000 + rgb).toString(16).slice(1);
 }
 
-function func(){
-    if(document.getElementById("switchCheck").checked){
-        console.log("checked");
-        whatever(getRandomColor());
-    }
-}
-setInterval(func, 100);
+function hexToRGB(hex) {
+    hex = hex.replace(/[^0-9A-F]/gi, '');// what does it meannbn
+    var bigint = parseInt(hex, 16);
+    var r = (bigint >> 16) & 255;
+    var g = (bigint >> 8) & 255;
+    var b = bigint & 255;
 
+    return { r, g, b };
+}
+
+
+
+
+
+function func(){
+    if(document.getElementById("switchCheck").checked)
+        party_mode = setInterval(function() { whatever(getRandomColor()); }, 100);
+    else
+        clearInterval(party_mode);
+}
