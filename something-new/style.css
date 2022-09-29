@@ -16,6 +16,7 @@
 
 }
 .circle {
+    
     border-radius: 50%;
     height: 400px;
     width: 400px;
@@ -23,3 +24,9 @@
     display: inline-block;
 
 }	
+.controls{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

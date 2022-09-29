@@ -10,10 +10,15 @@ document.addEventListener('keydown', function(event) {
             document.getElementById("dot_down").style.background = "red";
             break;
         case 68: // d key
-            document.getElementById("dot_right").style.background = "red";
+            if(bool){
+                document.getElementById("dot_right").style.background = "green";
+            }else{
+                document.getElementById("dot_right").style.background = "red";
+            }
             break;
         case 32: // space_bar key
         document.getElementById("space_bar").style.borderColor = "red";
+        rightNote();
             break;
     }       
 });
@@ -42,3 +47,15 @@ document.addEventListener('keyup', function(event) {
         }       
     }
 );
+var bool = false;
+
+function myFunction(){
+    bool = false;
+}
+function rightNote(){
+    bool = true;
+    setTimeout(myFunction, 3000);
+
+}
+
+
