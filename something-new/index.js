@@ -91,11 +91,20 @@ var miss = new Audio("hit2.wav"); // buffers automatically when created
 
 
 function song(){
-
+    
 }
 
-function removeDummy() {
+function remove() {
+    song();
     var elem = document.getElementById('btn_start');
     elem.parentNode.removeChild(elem);
     return false;
 }
+
+function noteUp(){
+    var note = document.createElement("div");
+    note.classList.add("Note");
+    document.getElementById('dot_up').append(note);
+    
+}
+noteUp();
