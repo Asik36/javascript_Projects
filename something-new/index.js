@@ -27,11 +27,13 @@ document.addEventListener('keydown', function(event) {
       if (event.repeat) return;
     switch(event.keyCode){
         case 87: // w key
-            document.getElementById("dot_up").style.background = "red";
             if(bool_up){
                 hit.cloneNode(true).play();
+                document.getElementById("dot_up").style.background = "green";
             } else{
                 miss.cloneNode(true).play();
+                document.getElementById("dot_up").style.background = "red";
+
             }
         break;
         
@@ -76,14 +78,8 @@ document.addEventListener('keydown', function(event) {
 
 
 
-function myFunction(){
-    bool = false;
-}
-function startNote(){
-    bool_up = true;
-    setTimeout(function(){bool_up}, 3000);
 
-}
+
 var bool_left, bool_right, bool_up, bool_down,bool_space = false;
 var color_left, color_right, color_up, color_down, color_space = "blue";
 var hit = new Audio("hit.wav"); // buffers automatically when created
@@ -95,16 +91,25 @@ function song(){
 }
 
 function remove() {
-    song();
     var elem = document.getElementById('btn_start');
     elem.parentNode.removeChild(elem);
     return false;
 }
 
-function noteUp(){
-    var note = document.createElement("div");
-    note.classList.add("Note");
-    document.getElementById('dot_up').append(note);
-    
+function notes(dirc,sec){
+    var elem = document.createElement("div");
+    elem.classList.add("Note");
+    elem.addEventListener('animationend', () => {
+        bool_up = false;
+        elem.remove();
+    });
+
+    document.getElementById('dot_'+dirc).append(elem);
+    elem.style.animation = dirc+" "+sec+"s linear";
+    setTimeout(() =>{bool_up=true},sec*1000-500);
+    console.log(sec*1000);
 }
-noteUp();
+notes("up" ,3);
+notes("down" ,4);
+notes("right" ,5);
+notes("up" ,6);

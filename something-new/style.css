@@ -50,17 +50,16 @@
   width: 75px;
   height: 75px;
   border-radius: 50%;
+  animation-timing-function:linear;
   background-color: rgb(207, 123, 228 , 0.7);
-  animation-duration: 1s;
-  
   
   
 }
 
 
 @keyframes up {
-  0%   {left:0px; top:-400px;}
-  100% {left:0px; top:0px;}
+  from   {left:0px; top:-400px;}
+  to {left:0px; top:0px;}
 }
 @keyframes left {
   0%   {left:-400px; top:0px;}
