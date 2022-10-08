@@ -1,3 +1,4 @@
+import Note from './Note.js';
 document.addEventListener('keyup', function(event) {
     switch(event.keyCode){
         case 87: // w key
@@ -35,30 +36,27 @@ document.addEventListener('keydown', function(event) {
         break;
         
         case 65: // a key
-            document.getElementById("dot_left").style.background = "red";
-            if(bool_right){
-                hit.cloneNode(true).play();
+            if(bool_left){
+                noteHit("dot_left");
             } else{
-                miss.cloneNode(true).play();
+                noteMiss("dot_left");
             }
             break;
         break;
         case 83: // s key
-            document.getElementById("dot_down").style.background = "red";
             if(bool_down){
-                hit.cloneNode(true).play();
+                noteHit("dot_down");
             } else{
-                miss.cloneNode(true).play();
+                noteMiss("dot_down");
             }
             break;
         break;
         case 68: // d key
-        document.getElementById("dot_right").style.background = "red";
-        if(bool_left){
-            hit.cloneNode(true).play();
-        } else{
-            miss.cloneNode(true).play();
-        }
+        if(bool_right){
+            noteHit("dot_right");
+            } else{
+                noteMiss("dot_right");
+            }
         break;
         
         break;
@@ -83,10 +81,6 @@ var hit = new Audio("hit.wav"); // buffers automatically when created
 var miss = new Audio("hit2.wav"); // buffers automatically when created
 
 
-
-
-
-
 function noteMiss(dot) {
     miss.cloneNode(true).play();
     document.getElementById(dot).style.background = "red";
@@ -96,70 +90,24 @@ function noteHit(dot) {
     hit.cloneNode(true).play();
     document.getElementById(dot).style.background = "green";
 }
+var time;
+function song(){
+    time = 0;
+    setInterval(() => {time = time+10;},10);
+    new Note("up",1.2,3);
+    new Note("left",1,3.2);
+    new Note("down",1,3.4);
+    new Note("right",1,3.6);
+    new Note("up",1,3.8);
+    new Note("left",1,4);
+    new Note("down",1,4.2);
+    new Note("right",1,4.4);
 
-function noteUp(sec){
-    var elem = newNote("up", sec);
-    startAnimation("up", sec,elem);
-
-    elem.addEventListener('animationend', () => {
-        elem.remove();
-        bool_up = false;
-    });
-}
-function noteLeft(sec){
-    var elem = newNote("left", sec);
-    startAnimation("left", sec,elem);
-    elem.addEventListener('animationend', () => {
-        elem.remove();
-        bool_left = false;
-    });
-}
-function noteRight(sec){
-    var elem = newNote("right", sec);
-    startAnimation("right", sec,elem);
-    elem.addEventListener('animationend', () => {
-        elem.remove();
-        bool_right = false;
-    });
-}
-function noteDown(sec){
-    var elem = newNote("down", sec);
-    startAnimation("down", sec,elem);
-    elem.addEventListener('animationend', () => {
-        elem.remove();
-        bool_down = false;
-    });
 }
 
+song();
 
 
 
+    
 
-
-function startAnimation(dirc,sec,elem){
-    switch(dirc){
-        case 'left':
-            setTimeout(() =>{bool_left=true},sec*1000-500);
-        case 'right':
-            setTimeout(() =>{bool_right=true},sec*1000-500);
-        case 'up':
-            setTimeout(() =>{bool_up=true},sec*1000-500);
-        case 'down':
-            setTimeout(() =>{bool_down=true},sec*1000-500);
-
-    }
-    elem.style.animation = dirc+" "+sec+"s linear";
-    setTimeout(() =>{bool_up=true},sec*1000-100);
-    console.log(sec*1000);
-}
-
-function newNote(dirc){
-    var elem = document.createElement("div");
-    elem.classList.add("Note");
-    document.getElementById('dot_'+dirc).append(elem);
-    return elem;
-}
-noteUp(1.6);
-noteUp(1.4);
-noteUp(1.2);
-noteUp(1.0);
