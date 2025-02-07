@@ -1,0 +1,26 @@
+class Utilties():
+    def find_prime(n):
+            if n <= 1:
+                return False
+            for i in range(2, int(n**0.5) + 1):
+                if n % i == 0:
+                    return False
+            return True
+    def metrix_prime_index(matrix):
+         for i in range(matrix):
+              for j in range(matrix[i]):
+                    if Utilties.find_prime(matrix[i][j]):
+                        matrix[i][j] = True
+                    else:
+                         matrix[i][j] = False
+    def print_metrix(matrix):
+          for i in matrix:
+                for j in i:
+                    print(*str(j) + ' ')
+                print("\n")
+if __name__ == '__main__':
+     matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+     #Utilties.metrix_prime_index(matrix)
+     Utilties.print_metrix(matrix)
+
+         

@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "myqueue.h": "c",
+        "model.h": "c"
+    }
+}

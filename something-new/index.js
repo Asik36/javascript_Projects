@@ -161,6 +161,7 @@ function remove(el) {
     song();
 
   }
+  
 document.getElementById('btn_start').addEventListener('click', ()=>(remove(document.getElementById('btn_start'))));
 var hit = new Audio("hit.wav"); // buffers automatically when created
 var miss = new Audio("hit2.wav"); // buffers automatically when created
